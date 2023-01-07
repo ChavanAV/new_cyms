@@ -1,5 +1,9 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:new_cyms/Screens/home_screen.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Login&Signup/login_page.dart';
 
@@ -14,20 +18,33 @@ class _SplashScreenState extends State<SplashScreen> {
 
   void initState(){
     super.initState();
-    _NavigateToHome();
+    isLogin();
   }
 
-  _NavigateToHome() async{
-    await Future.delayed(
-        Duration(seconds: 1),
+  void isLogin() async {
+    SharedPreferences shp = await SharedPreferences.getInstance();
+    var islogin = shp.getBool("isLogin") ?? false;
+    var username = shp.getString("Name");
+    var usereamil = shp.getString("Email");
 
-            (){}
-    );
-    Navigator.pushReplacement(
+    if(islogin){
+    Timer(Duration(seconds: 2), () {
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(
+          builder: (context)=>HomeScreen()
+      ));
+    });
+    }
+    else {
+        Timer(Duration(seconds: 2), () {
+          Navigator.pushReplacement(
+              context, MaterialPageRoute(
+              builder: (context)=>LoginPage()
+          ));
+        });
+      }
 
-      context,MaterialPageRoute(builder: (context)=>LoginPage()),
 
-    );
   }
 
 

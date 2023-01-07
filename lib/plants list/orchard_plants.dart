@@ -1,29 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:new_cyms/Info%20Screens/leaf_info_screen.dart';
 import '../All Classes & Lists/list_all_classes&list.dart';
-import '../Info Screens/fruit_info_screen.dart';
-import '../Info Screens/vel_info_screen.dart';
+import '../Info Screens/bag_info_screen.dart';
 
-
-class VelPlants extends StatefulWidget {
-  const VelPlants({Key? key}) : super(key: key);
+class OrchardPlants extends StatefulWidget {
+  const OrchardPlants({Key? key}) : super(key: key);
 
   @override
-  State<VelPlants> createState() => _VelPlantsState();
+  State<OrchardPlants> createState() => _OrchardPlantsState();
 }
 
-class _VelPlantsState extends State<VelPlants> {
+class _OrchardPlantsState extends State<OrchardPlants> {
 
   TextEditingController tec = TextEditingController();
 
-  List<VelItems> items = velitems;
+  List<BagItems> items = bagitems;
 
   void Search(String query) {
-    final suggestions = velitems.where((item) {
-      final newvelname = item.velname.toLowerCase();
+    final suggestions = bagitems.where((item) {
+      final neworchardname = item.orchardname.toLowerCase();
       final input = query.toLowerCase();
-      return newvelname.contains(input);
+      return neworchardname.contains(input);
     }).toList();
 
     setState(() => items = suggestions);
@@ -99,13 +96,13 @@ class _VelPlantsState extends State<VelPlants> {
             mainAxisSpacing: 0,
             crossAxisSpacing: 0,
             mainAxisExtent: 230),
-        itemBuilder: (context, index) => VelVargPlantsListItems(
-          velitems: items[index],
+        itemBuilder: (context, index) => BagPlantsListItems(
+          orcharditems: items[index],
           press: () => Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => VelInfo(
-                    velitems: items[index],
+                  builder: (context) => BagInfo(
+                    orcharditems: items[index],
                   ))),
         ),
       ),

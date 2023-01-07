@@ -76,7 +76,7 @@ class _DirectUploadScreenState extends State<DirectUploadScreen> {
                 ),
                 child: const Text("पाठवा"),
                 onPressed: (){
-                  Navigator.push(context, MaterialPageRoute(builder: (context)=>HomeScreen()));
+                  Navigator.pop(context);
                 },
               )
             ],
@@ -107,7 +107,6 @@ class _DirectUploadScreenState extends State<DirectUploadScreen> {
             padding: const EdgeInsets.all(8.0),
             child: SingleChildScrollView(
               child: Column(
-                // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Builder(
@@ -136,7 +135,7 @@ class _DirectUploadScreenState extends State<DirectUploadScreen> {
                       Expanded(
                         child: Container(
                           height: 55,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(15),
                               color: Colors.white.withOpacity(.7),
@@ -239,7 +238,7 @@ class _DirectUploadScreenState extends State<DirectUploadScreen> {
                                       labelText: "रुपए"
                                   ),
                                   validator: (val){
-                                    if(val!.isEmpty || !RegExp(r'^[0-9]').hasMatch(val)){
+                                    if(val!.isEmpty || !RegExp(r'^[1-9]').hasMatch(val)){
                                       return "दर भरा";
                                     }else{
                                       return null;
